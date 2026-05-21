@@ -11,6 +11,8 @@ home.py
 
 import streamlit as st
 
+from services.db.connection import test_connection
+
 
 # render_home_page: 홈 화면 렌더링
 def render_home_page() -> None:
@@ -60,3 +62,14 @@ def render_home_page() -> None:
         5단계: EDA
         """
     )
+
+    st.divider()
+
+    st.subheader("DB 연결 상태")
+
+    try:
+        test_connection()
+        st.success("SQLite DB 연결 성공")
+    except Exception as e:
+        st.error("SQLite DB 연결 실패")
+        st.exception(e)
