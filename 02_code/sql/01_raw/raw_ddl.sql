@@ -1,3 +1,21 @@
+/*
+ * 파일명: raw_ddl.sql
+ *
+ * 목적:
+ *     - Raw Schema를 생성하고 Raw Schema에 해당되는 테이블을 생성
+ *
+ * 생성 대상:
+ *     - raw.raw_orders
+ *     - raw.raw_inventory
+ *     - raw.raw_process
+ *     - raw.raw_production_log
+ *     - raw.raw_machine_sensor
+*/
+
+
+-- ======================================================================================================================
+
+
 -- Raw Schema 생성
 CREATE SCHEMA IF NOT EXISTS raw;
 
@@ -7,6 +25,10 @@ DROP TABLE IF EXISTS raw.raw_production_log;
 DROP TABLE IF EXISTS raw.raw_process;
 DROP TABLE IF EXISTS raw.raw_inventory;
 DROP TABLE IF EXISTS raw.raw_orders;
+
+
+-- ======================================================================================================================
+
 
 -- orders 테이블 생성
 CREATE TABLE raw.raw_orders (
@@ -27,6 +49,9 @@ CREATE INDEX idx_raw_orders_due_date
 ON raw.raw_orders(due_date);
 
 
+-- ======================================================================================================================
+
+
 -- inventory 테이블 생성
 CREATE TABLE raw.raw_inventory (
 	material_id			VARCHAR(50)		NOT NULL	PRIMARY KEY,
@@ -45,6 +70,9 @@ ON raw.raw_inventory(lead_time);
 
 CREATE INDEX idx_raw_inventory_incoming_order_date
 ON raw.raw_inventory(incoming_order_date);
+
+
+-- ======================================================================================================================
 
 
 -- process 테이블 생성
@@ -76,6 +104,9 @@ CREATE INDEX idx_raw_process_process_step
 ON raw.raw_process(process_step);
 
 
+-- ======================================================================================================================
+
+
 -- production_log 테이블 생성
 CREATE TABLE raw.raw_production_log (
 	lot_id				VARCHAR(50)		NOT NULL,
@@ -104,6 +135,9 @@ ON raw.raw_production_log(process_id);
 
 CREATE INDEX idx_raw_production_log_machine_id
 ON raw.raw_production_log(machine_id);
+
+
+-- ======================================================================================================================
 
 
 -- machine_sensor 테이블 생성
