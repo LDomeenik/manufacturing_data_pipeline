@@ -5,6 +5,12 @@ __pycache__/
 venv/
 .env
 
+# SQLite
+*.db
+
+# Streamlit cache
+.streamlit/
+
 # Jupyter
 .ipynb_checkpoints/
 
@@ -18,4 +24,5 @@ Thumbs.db
 *.log
 
 # Large / external raw source data
-00_data/
+00_data/00_used_data/
+00_data/00_raw_data/
